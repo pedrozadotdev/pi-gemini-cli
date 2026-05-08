@@ -18,7 +18,6 @@ gemini "[prompt]" -o text 2>&1
 | `-m gemini-3.1-pro-preview` | Deep analysis (explicit override of default) |
 | `-r [index]` | Resume session by index |
 | `--list-sessions` | List available sessions |
-| `--allowed-tools <list>` | Comma-separated list of tools Gemini may use |
 
 ## JSON Output Structure
 
@@ -39,18 +38,27 @@ gemini --list-sessions               # List sessions
 echo "follow-up" | gemini -r 1 -o text   # Resume by index
 ```
 
-## Tool Allowlists
+## Tool Access Control (Policy Engine)
 
-```bash
-# Web search only
-gemini "..." --allowed-tools google_web_search -o text
+Tool restrictions are managed via **Policy Engine** TOML rules instead of the deprecated `--allowed-tools` flag.
 
-# File reading + analysis
-gemini "..." --allowed-tools read_file,codebase_investigator,glob,search_file_content,list_directory,write_todos -o text
+Create policy rules in `~/.gemini/policies/*.toml`:
 
-# Codebase analysis only
-gemini "..." --allowed-tools codebase_investigator -o text
+```toml
+# Example: Allow google_web_search automatically
+[[rule]]
+toolName = "google_web_search"
+decision = "allow"
+priority = 100
+
+# Example: Deny write tools for read-only analysis
+[[rule]]
+toolName = ["write_file", "replace"]
+decision = "deny"
+priority = 100
 ```
+
+See [Policy Engine docs](https://geminicli.com/docs/reference/policy-engine/) for full reference.
 
 ## More Information
 
