@@ -1,0 +1,27 @@
+{
+  "name": "pi-gemini-cli",
+  "version": "1.0.0",
+  "description": "Gemini CLI integration for Pi — web search, code review, plan review, and codebase analysis via Gemini",
+  "pi": {
+    "extensions": [
+      "./extensions/gemini.ts"
+    ],
+    "skills": [
+      "./skills"
+    ]
+  },
+  "keywords": [
+    "pi-package",
+    "gemini",
+    "ai",
+    "code-review",
+    "web-search",
+    "architecture",
+    "plan-review"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "robbyt",
+    "email": "robbyt@robbyt.net"
+  }
+}
