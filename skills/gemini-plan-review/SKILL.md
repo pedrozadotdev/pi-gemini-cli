@@ -16,7 +16,7 @@ cat path/to/plan.md | gemini "Review this implementation plan:
 
 $(cat)
 
-Do not make any changes. Provide critique and feedback only." --allowed-tools read_file,codebase_investigator,glob,search_file_content,list_directory,write_todos -o text 2>&1
+Do not make any changes. Provide critique and feedback only." -m gemini-3.1-pro-preview --allowed-tools read_file,codebase_investigator,glob,search_file_content,list_directory,write_todos -o text 2>&1
 ```
 
 ## Standard Pattern
@@ -32,7 +32,7 @@ Consider:
 3. Is the approach optimal?
 4. What alternatives should be considered?
 
-Do not make any changes. Respond with feedback only." --allowed-tools read_file,codebase_investigator,glob,search_file_content,list_directory,write_todos -o text 2>&1
+Do not make any changes. Respond with feedback only." -m gemini-3.1-pro-preview --allowed-tools read_file,codebase_investigator,glob,search_file_content,list_directory,write_todos -o text 2>&1
 ```
 
 ## With Source Context
@@ -48,7 +48,7 @@ Also read these source files for context:
 - src/auth/login.ts
 - src/middleware/session.ts
 
-Evaluate if the plan addresses the actual codebase structure. Do not make any changes. Respond with feedback only." --allowed-tools read_file,codebase_investigator,glob,search_file_content,list_directory,write_todos -o text 2>&1
+Evaluate if the plan addresses the actual codebase structure. Do not make any changes. Respond with feedback only." -m gemini-3.1-pro-preview --allowed-tools read_file,codebase_investigator,glob,search_file_content,list_directory,write_todos -o text 2>&1
 ```
 
 ## Focused Reviews
@@ -65,7 +65,7 @@ Evaluate:
 - Rollback complexity
 - Dependencies that could fail
 
-Do not make any changes. Respond with feedback only." --allowed-tools read_file,codebase_investigator,glob,search_file_content,list_directory,write_todos -o text 2>&1
+Do not make any changes. Respond with feedback only." -m gemini-3.1-pro-preview --allowed-tools read_file,codebase_investigator,glob,search_file_content,list_directory,write_todos -o text 2>&1
 ```
 
 **Completeness check:**
@@ -79,7 +79,7 @@ Evaluate:
 - Is testing addressed?
 - Are there missing steps?
 
-Do not make any changes. Respond with feedback only." --allowed-tools read_file,codebase_investigator,glob,search_file_content,list_directory,write_todos -o text 2>&1
+Do not make any changes. Respond with feedback only." -m gemini-3.1-pro-preview --allowed-tools read_file,codebase_investigator,glob,search_file_content,list_directory,write_todos -o text 2>&1
 ```
 
 ## Notes
