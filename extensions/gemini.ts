@@ -28,6 +28,17 @@ export default function (pi: ExtensionAPI) {
     }
   });
 
+  // ─── System Prompt Injection ───────────────────────────────────────────────
+  pi.on("before_agent_start", async (event, _ctx) => {
+    const reviewInstruction = `
+## Gemini Review Integration
+When you are tasked with reviewing code changes, pull requests, or diffs, you MUST use the \`gemini-diff-review\` skill to get a secondary analysis. Do not rely solely on your own code review capabilities.
+`;
+    return {
+      systemPrompt: event.systemPrompt + "\n" + reviewInstruction,
+    };
+  });
+
   // ─── /gemini-search ────────────────────────────────────────────────────────
   pi.registerCommand("gemini-search", {
     description:
